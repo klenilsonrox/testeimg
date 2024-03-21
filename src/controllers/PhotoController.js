@@ -25,7 +25,21 @@ export const createPhoto = async (req, res) => {
    })
 
    return res.status(201).json(photo)
-
-
   
 }
+
+export const editPhoto = async (req, res) => {
+    const {name}=req.body
+ const {id}= req.params
+    const {filename} =req.file
+
+    const fotoExist = await Photo.findById(id)
+ 
+    const photo = await Photo.findByIdAndUpdate(id,{
+     name,
+     src:filename
+    }, {new:true})
+ 
+    return res.status(201).json({message:"foto atualizada"})
+   
+ }
