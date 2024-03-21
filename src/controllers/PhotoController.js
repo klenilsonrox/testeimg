@@ -21,7 +21,7 @@ export const createPhoto = async (req, res) => {
 
    const photo = await Photo.create({
     name,
-    src:`http://localhost:4000/files/${filename}`
+    src:filename
    })
 
    return res.status(201).json(photo)
